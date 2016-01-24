@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NewsApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+          <div class="pull-right login-links">
+            <% if user_signed_in? %>
+                <%= link_to current_user.email, edit_user_registration_path, :title => "Edit Profile" %>
+                <%= link_to "Log off", destroy_user_session_path, :method => :delete, :class => "label label-important" %>
+            <% else %>
+                <%= link_to "Log in", new_user_session_path, :method => :get %> |
+                <%= link_to "Register", new_user_registration_path, :method => :get %>
+            <% end %>
+          </div>
+
+<%= yield %>
+
+</body>
+</html>
